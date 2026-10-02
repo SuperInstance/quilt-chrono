@@ -30,8 +30,11 @@ value rides the next crest.
 ## Quickstart
 
 ```bash
-npm test        # 52/52 green, node --test, zero network
+npm test        # 59/59 green, node --test, zero network (52 pre-v3 + 7 Ed25519 seal tests)
 npm run example # the tide demo: 9 cells, 40 steps -> examples/tide/outputs/
+node examples/ed25519-cross-repo-proof.mjs
+                # cross-repo seal proof: one Ed25519 identity, chrono + organ toolkit,
+                #   each verifying the other under its own law -> examples/receipts/
 ```
 
 Ten lines of sheet:
@@ -104,6 +107,14 @@ const { checkpoint } = seal(sheet.ledger, { key: process.env.CHRONO_SEAL_KEY });
 //   seq, hash: <chainTip at seq>, manifestHash, sig, manifest }
 //   where sig = HMAC-SHA256(key, canonical({hash, manifestHash, seq}))
 
+// v3 (wave-69): the signer has a NAME — pass alg:"Ed25519" and the signer's
+// private PEM; the checkpoint gains the additive publicKeyFingerprint field
+// and the sig becomes Ed25519 over the SAME canonical triple. The verifier
+// needs only the PUBLIC key — zero shared secrets:
+const id = mintKeyring('chrono-minter');            // from quilt-jev-toolkit examples/
+const sealed = seal(sheet.ledger, { key: id.privateKeyPem, alg: 'Ed25519' });
+verifySeal(sealed.checkpoint, id.publicKeyPem);      // ok — organ v3 byte-shape-exact
+
 verifyCustody(checkpoint, key, { chainFile, ledger }); // the courtroom, before boot
 ```
 
@@ -121,10 +132,15 @@ How it works, in three laws:
 2. **The seal is the organ's checkpoint, byte-for-byte.** `seal()` derives the
    prefix state (fold of writes ≤ seq), wraps it in a
    `quilt.organ.manifest/v1` (content-addressed `manifestHash`), and signs the
-   organ triple `{hash, manifestHash, seq}` with HMAC-SHA256 under the
-   caller-provided key. Spec: `quilt-jev-toolkit/docs/REVERSE-ACTUALIZED-SPEC.md`
-   §8. No chrono-specific fields are added — drift is how parallel standards
-   start. `restore(snap, { custody: { checkpoint, key, chainFile } })` runs the
+   organ triple `{hash, manifestHash, seq}` — with HMAC-SHA256 under the
+   caller-provided key (v2, the byte-compat default), or with Ed25519 under
+   the caller's private PEM while naming the signer by
+   `publicKeyFingerprint` (v3, wave-69; the verifier holds only the public
+   key, the key HOLDS the trust). Spec:
+   `quilt-jev-toolkit/docs/REVERSE-ACTUALIZED-SPEC.md` §8 (v2) / §10 (v3). No
+   chrono-specific fields are added — drift is how parallel standards start.
+   Wrong/missing keying material on the mint side is named too: `SEAL_BAD_ALG`
+   (unregistered alg), `SEAL_BAD_KEY` (unusable Ed25519 material). `restore(snap, { custody: { checkpoint, key, chainFile } })` runs the
    full courtroom **before** anything boots.
 3. **Honest scope, inherited from the organ spec.** The signature vouches for
    the *prefix*: the boundary chain tip, the anchored manifest, the state at
@@ -133,7 +149,18 @@ How it works, in three laws:
    `CHAIN_ENTRY_MISMATCH`); a fully re-hashed tail is a different fork, not a
    detectable forgery — seal again to tighten the window. Wrong key ⇒
    `CHECKPOINT_SIGNATURE_INVALID`; missing key ⇒
-   `CHECKPOINT_SIGNATURE_REQUIRED`.
+   `CHECKPOINT_SIGNATURE_REQUIRED`; for Ed25519 seals the fingerprint-equality
+   law applies first (organ §10.2): a key whose fingerprint differs from the
+   seal's `publicKeyFingerprint` is the wrong key, refused before the sig is
+   even tried.
+
+**Cross-repo proof (the convergence law):** one run-time Ed25519 identity
+minted by the toolkit's keyring helper seals a chrono sheet, and the toolkit's
+OWN verifiers (`verifySignedCheckpoint`, `verifyCheckpointEd25519`,
+`bootChrono`) accept it — plus forgery probes under both laws. Receipted in
+`receipts/ed25519-cross-repo-proof.md` (raw evidence:
+`examples/receipts/ed25519-cross-repo-proof.json`; re-derivable via
+`node examples/ed25519-cross-repo-proof.mjs`).
 
 Old seals survive honest growth: append entries, re-seal (identity carried
 forward via `organId`, lineage via `supersedes`) — the earlier checkpoint still
@@ -189,7 +216,9 @@ src/ledger.js      the time ledger: append-only, frozen, double-entry, jsonl
 src/projection.js  stateAt / diff / flowMap / renderSVG / renderTable (pure views)
 src/rewind.js      snapshot / restore (hash-pinned, organ-compatible seeds)
 src/seal.js        signed custody: chain sidecar + organ-checkpoint-EXACT seals
+                   (v2 HMAC default, byte-compat; v3 alg:"Ed25519" named-signer)
 examples/tide/     40 simulated steps of a 9-cell sheet
-tests/             52 node --test tests, no network
+tests/             59 node --test tests, no network
+receipts/          run receipts (ed25519-cross-repo-proof.md)
 scripts/keyscan.mjs  fleet-standard secret scanner (run before every push)
 ```

@@ -5,10 +5,11 @@
 //
 // This module is the glue wave-66 queued ("hash-chain the chrono jsonl and hand
 // tipHash to quilt-jev-toolkit's checkpoint.mjs"). It deliberately does NOT
-// invent a signature format. The sealed document is BYTE-EXACTLY the organ v2
-// checkpoint (quilt-jev-toolkit/docs/REVERSE-ACTUALIZED-SPEC.md §8.1,
+// invent a signature format. The sealed document is BYTE-EXACTLY the organ
+// checkpoint (quilt-jev-toolkit/docs/REVERSE-ACTUALIZED-SPEC.md §8.1 v2 / §10.1 v3,
 // src/organ/checkpoint.mjs + boot.mjs):
 //
+//   v2 (default, alg "HMAC-SHA256" — byte-compat with every prior seal):
 //   { schema: "quilt.organ.checkpoint", schemaVersion: 1, alg: "HMAC-SHA256",
 //     seq:  <boundary — last ledger entry the seal covers>,
 //     hash: <chainTip at the boundary = the sidecar link's receipt hash>,
@@ -16,8 +17,18 @@
 //     sig: <HMAC-SHA256(key, canonical({hash, manifestHash, seq}))>,
 //     manifest: <quilt.organ.manifest/v1, content-addressed to manifestHash> }
 //
+//   v3 (opts.alg: "Ed25519" — wave-69: the signer has a NAME, spec §10):
+//   the same document with alg "Ed25519", an additive
+//   publicKeyFingerprint: <sha256 of the signer's SPKI PEM> field, and
+//   sig: <Ed25519(privateKey, canonical({hash, manifestHash, seq}))> — 128-hex.
+//   The minter's key is the private PEM; the verifier's key is the PUBLIC PEM
+//   (the key HOLDS the trust — zero shared secrets). The fingerprint law is
+//   byte-identical to organ v3 and qmr2 §8.2, so ONE identity can mint chrono
+//   seals, organ checkpoints, and qmr2 rows and be verified by each repo's own
+//   verifier (examples/ed25519-cross-repo-proof.mjs proves exactly that).
+//
 // So the organ toolkit's OWN verifiers accept a chrono seal unmodified:
-//   boot.mjs verifySignedCheckpoint(cp, key)  — structure + HMAC
+//   boot.mjs verifySignedCheckpoint(cp, key)  — structure + alg-dispatched sig
 //   manifest.mjs verifyChain(links)           — the sidecar IS an organ
 //                                               receipt chain
 //   manifest.mjs validateManifest(cp.manifest) — the prefix custody manifest
@@ -55,6 +66,23 @@ import { ledgerError } from './ledger.js';
 
 export const CHAIN_GENESIS = 'GENESIS';
 export const CHAIN_SIDECAR_MARKER = '.chain.jsonl';
+
+// --- the sig-slot law (v3) ----------------------------------------------------
+// The registered checkpoint algs. HMAC-SHA256 stays the DEFAULT (byte-compat:
+// a seal minted without opts.alg is byte-identical to every pre-v3 seal).
+export const SEAL_ALG_HMAC = 'HMAC-SHA256';
+export const SEAL_ALG_ED25519 = 'Ed25519';
+export const SEAL_ALGS = [SEAL_ALG_HMAC, SEAL_ALG_ED25519];
+const ED25519_SIG_HEX = /^[0-9a-f]{128}$/;
+
+/** THE FINGERPRINT LAW (organ v3 §10.1 = qmr2 §8.2, shared byte-for-byte
+ *  across the fleet): sha256 over the normalized SPKI PEM. createPublicKey
+ *  derives the public half from either PEM, so the name is stable from the
+ *  private key (mint side) and the public key (verify side). */
+function ed25519Fingerprint(keyMaterial) {
+  const spki = crypto.createPublicKey(keyMaterial).export({ type: 'spki', format: 'pem' });
+  return sha256Hex(spki.toString());
+}
 
 // --- canonical JSON + sha256 ------------------------------------------------
 // Organ-exact canonicalization (law: quilt-jev-toolkit src/organ/manifest.mjs
@@ -318,7 +346,10 @@ function entriesOf(subject) {
  *
  * @param subject  a Ledger or a plain entries array
  * @param opts {
- *   key         REQUIRED non-empty string|Buffer — the minter's HMAC key
+ *   key         REQUIRED — v2 (default): non-empty string|Buffer HMAC secret;
+ *               v3 (alg "Ed25519"): the signer's Ed25519 PRIVATE key PEM
+ *   alg         'HMAC-SHA256' (default — byte-compat) | 'Ed25519' (the named-
+ *               signer v3 path; the checkpoint gains publicKeyFingerprint)
  *   seq         boundary (default: last entry — a checkpoint at the tip is
  *               legal, organ spec §8.4.6)
  *   chainFile   sidecar path; default: chainFileFor(ledger.file) when the
@@ -329,13 +360,17 @@ function entriesOf(subject) {
  *   supersedes  prior seal's manifestHash — honest lineage
  * }
  * @returns { checkpoint, links, chainFile, appended }
- *   `checkpoint` is byte-shape-EXACTLY the organ v2 signed checkpoint —
- *   no chrono-specific fields added (drift is how parallel standards start).
+ *   `checkpoint` is byte-shape-EXACTLY the organ signed checkpoint (v2 or v3
+ *   per alg) — no chrono-specific fields added (drift is how parallel
+ *   standards start).
  */
 export function seal(subject, opts = {}) {
-  const { key, seq = null, chainFile = null, name = null, organId = null, supersedes = null } = opts;
+  const { key, seq = null, chainFile = null, name = null, organId = null, supersedes = null, alg = SEAL_ALG_HMAC } = opts;
+  if (alg !== SEAL_ALG_HMAC && alg !== SEAL_ALG_ED25519) {
+    throw ledgerError('SEAL_BAD_ALG', `seal: alg ${JSON.stringify(alg)} is not registered (registered: ${SEAL_ALGS.join(', ')})`);
+  }
   if (key === undefined || key === null || key === '' || (typeof key === 'object' && key.length === 0)) {
-    throw ledgerError('CHECKPOINT_SIGNATURE_REQUIRED', 'seal: signing needs a non-empty key (string or Buffer)');
+    throw ledgerError('CHECKPOINT_SIGNATURE_REQUIRED', 'seal: signing needs a non-empty key (v2: HMAC secret; v3 Ed25519: the signer\'s private key PEM)');
   }
 
   const entries = entriesOf(subject);
@@ -385,18 +420,38 @@ export function seal(subject, opts = {}) {
   const manifestHash = sha256Json(manifest);
   manifest.manifestHash = manifestHash;
 
-  // 3. the signed checkpoint — organ v2 EXACT: HMAC-SHA256 over
-  //    canonical({hash, manifestHash, seq}) (boot.mjs checkpointSigningPayload).
+  // 3. the signed checkpoint — organ EXACT per alg, over the SAME canonical
+  //    triple {hash, manifestHash, seq} (boot.mjs checkpointSigningPayload):
+  //    v2 HMAC-SHA256 under the shared secret; v3 Ed25519 under the signer's
+  //    private PEM with the additive publicKeyFingerprint signer name.
   const cp = {
     schema: 'quilt.organ.checkpoint',
     schemaVersion: 1,
-    alg: 'HMAC-SHA256',
+    alg,
     seq: boundary,
     hash: tipHash,
     manifestHash,
   };
-  const k = typeof key === 'string' ? Buffer.from(key, 'utf8') : key;
-  cp.sig = crypto.createHmac('sha256', k).update(canonicalJson({ hash: cp.hash, manifestHash: cp.manifestHash, seq: cp.seq }), 'utf8').digest('hex');
+  const signingPayload = canonicalJson({ hash: cp.hash, manifestHash: cp.manifestHash, seq: cp.seq });
+  if (alg === SEAL_ALG_ED25519) {
+    let fingerprint;
+    try {
+      fingerprint = ed25519Fingerprint(key); // the public half's name
+    } catch {
+      throw ledgerError('SEAL_BAD_KEY', 'seal: alg Ed25519 needs parseable Ed25519 key material (a private/public key PEM) — the provided key is unusable');
+    }
+    let sig;
+    try {
+      sig = crypto.sign(null, Buffer.from(signingPayload, 'utf8'), key).toString('hex');
+    } catch (e) {
+      throw ledgerError('SEAL_BAD_KEY', `seal: Ed25519 signing failed on the provided key material: ${e.message}`);
+    }
+    cp.publicKeyFingerprint = fingerprint;
+    cp.sig = sig;
+  } else {
+    const k = typeof key === 'string' ? Buffer.from(key, 'utf8') : key;
+    cp.sig = crypto.createHmac('sha256', k).update(signingPayload, 'utf8').digest('hex');
+  }
   cp.manifest = JSON.parse(canonicalJson(manifest));
 
   return { checkpoint: cp, links, chainFile: sidecarFile, appended };
@@ -408,14 +463,20 @@ export function seal(subject, opts = {}) {
 
 /**
  * Verify a sealed checkpoint's structure + signature (organ boot.mjs
- * verifySignedCheckpoint law — same codes, same bytes):
+ * verifySignedCheckpoint law — same codes, same bytes, ALG-DISPATCHED):
  *   CHECKPOINT_SIGNATURE_REQUIRED / CHECKPOINT_MALFORMED /
  *   CHECKPOINT_SIGNATURE_INVALID.
+ *
+ * The key is alg-relative keying material: for v2 (HMAC-SHA256) the shared
+ * secret the minter used; for v3 (Ed25519) the verifier's PUBLIC key PEM —
+ * the key HOLDS the trust, and the checkpoint must name that key's
+ * fingerprint exactly (fingerprint-equality law, organ §10.2).
+ *
  * Returns { ok: true, seq, chainTip, manifestHash }.
  */
 export function verifySeal(cp, key) {
   if (key === undefined || key === null || key === '' || (typeof key === 'object' && key.length === 0)) {
-    throw ledgerError('CHECKPOINT_SIGNATURE_REQUIRED', 'no usable checkpoint key was provided — an HMAC signature cannot verify without it');
+    throw ledgerError('CHECKPOINT_SIGNATURE_REQUIRED', 'no usable checkpoint key was provided — a signature cannot verify without it');
   }
   if (!cp || typeof cp !== 'object' || Array.isArray(cp)) {
     throw ledgerError('CHECKPOINT_MALFORMED', 'checkpoint is not an object');
@@ -423,19 +484,54 @@ export function verifySeal(cp, key) {
   if (cp.schema !== 'quilt.organ.checkpoint' || cp.schemaVersion !== 1) {
     throw ledgerError('CHECKPOINT_MALFORMED', `checkpoint schema ${JSON.stringify(cp.schema)}/${JSON.stringify(cp.schemaVersion)} not implemented (knows only quilt.organ.checkpoint/1)`);
   }
-  if (cp.alg !== 'HMAC-SHA256') {
-    throw ledgerError('CHECKPOINT_MALFORMED', `checkpoint alg ${JSON.stringify(cp.alg)} not implemented (knows only HMAC-SHA256; Ed25519 is the organ v3 path)`);
-  }
   if (!Number.isInteger(cp.seq) || cp.seq < 0) {
     throw ledgerError('CHECKPOINT_MALFORMED', `checkpoint seq must be a non-negative integer, got ${JSON.stringify(cp.seq)}`);
   }
-  for (const field of ['hash', 'manifestHash', 'sig']) {
+  for (const field of ['hash', 'manifestHash']) {
     if (typeof cp[field] !== 'string' || !HEX64.test(cp[field])) {
       throw ledgerError('CHECKPOINT_MALFORMED', `checkpoint ${field} missing or not sha256 hex`);
     }
   }
+  const signingPayload = canonicalJson({ hash: cp.hash, manifestHash: cp.manifestHash, seq: cp.seq });
+
+  if (cp.alg === SEAL_ALG_ED25519) {
+    // v3: the checkpoint NAMES its signer; the verifier's key must be exactly
+    // that key (fingerprint equality), then the signature must verify under it.
+    if (typeof cp.publicKeyFingerprint !== 'string' || !HEX64.test(cp.publicKeyFingerprint)) {
+      throw ledgerError('CHECKPOINT_MALFORMED', 'ed25519 checkpoint carries no usable publicKeyFingerprint (expected 64-hex sha256 of the signer\'s SPKI PEM)');
+    }
+    if (typeof cp.sig !== 'string' || !ED25519_SIG_HEX.test(cp.sig)) {
+      throw ledgerError('CHECKPOINT_MALFORMED', 'checkpoint sig missing or not 128-hex (an Ed25519 signature)');
+    }
+    let fp;
+    try {
+      fp = ed25519Fingerprint(key);
+    } catch {
+      throw ledgerError('CHECKPOINT_SIGNATURE_INVALID', 'provided key is not usable Ed25519 key material (PEM unparseable) — the trust root itself is malformed');
+    }
+    if (fp !== cp.publicKeyFingerprint) {
+      throw ledgerError('CHECKPOINT_SIGNATURE_INVALID', `checkpoint names signer ${cp.publicKeyFingerprint.slice(0, 12)}… but the provided key's fingerprint is ${fp.slice(0, 12)}… — wrong key`);
+    }
+    let verified = false;
+    try {
+      verified = crypto.verify(null, Buffer.from(signingPayload, 'utf8'), key, Buffer.from(cp.sig, 'hex'));
+    } catch {
+      verified = false;
+    }
+    if (!verified) {
+      throw ledgerError('CHECKPOINT_SIGNATURE_INVALID', 'Ed25519 signature does not verify under the provided key — forged signature, tampered signed fields, or wrong key');
+    }
+    return { ok: true, seq: cp.seq, chainTip: cp.hash, manifestHash: cp.manifestHash };
+  }
+
+  if (cp.alg !== SEAL_ALG_HMAC) {
+    throw ledgerError('CHECKPOINT_MALFORMED', `checkpoint alg ${JSON.stringify(cp.alg)} not implemented (knows only ${SEAL_ALG_HMAC} and ${SEAL_ALG_ED25519}; anything else refuses fail-closed)`);
+  }
+  if (typeof cp.sig !== 'string' || !HEX64.test(cp.sig)) {
+    throw ledgerError('CHECKPOINT_MALFORMED', 'checkpoint sig missing or not sha256 hex');
+  }
   const k = typeof key === 'string' ? Buffer.from(key, 'utf8') : key;
-  const expected = crypto.createHmac('sha256', k).update(canonicalJson({ hash: cp.hash, manifestHash: cp.manifestHash, seq: cp.seq }), 'utf8').digest('hex');
+  const expected = crypto.createHmac('sha256', k).update(signingPayload, 'utf8').digest('hex');
   if (expected !== cp.sig) {
     throw ledgerError('CHECKPOINT_SIGNATURE_INVALID', 'HMAC does not verify under the provided key — forged signature, tampered signed fields, or wrong key');
   }
@@ -444,7 +540,8 @@ export function verifySeal(cp, key) {
 
 /**
  * Full custody verification — call BEFORE booting from a sealed history:
- *   1. verifySeal (structure + HMAC under the verifier's key)
+ *   1. verifySeal (structure + alg-dispatched signature: HMAC secret or the
+ *      Ed25519 public key — the key holds the trust)
  *   2. the chain source verifies (every link re-hashes; CHAIN_GAP /
  *      RECEIPT_HASH_MISMATCH at the first broken offset — any tamper, any
  *      offset, named)
@@ -459,8 +556,9 @@ export function verifySeal(cp, key) {
  *      entry-for-entry (CHAIN_ENTRY_MISMATCH), and the boundary must be
  *      within it (CHECKPOINT_SEQ_BEYOND_RECEIPTS)
  *
- * @param cp     the sealed checkpoint (organ v2 shape)
- * @param key    the verifier's key — same secret the minter used (HMAC)
+ * @param cp     the sealed checkpoint (organ v2 or v3 shape)
+ * @param key    the verifier's alg-relative keying material (HMAC secret, or
+ *               the Ed25519 public key PEM)
  * @param src    { links | chainFile, entries | ledger } — at least one chain
  *               source is required; entries are the optional second witness
  * @returns { ok, seq, chainTip, manifestHash, cells } — `cells` is the

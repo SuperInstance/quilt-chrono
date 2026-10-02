@@ -1,0 +1,73 @@
+{
+  "proof": "quilt-chrono Ed25519 seal verified by quilt-jev-toolkit organ law (one identity, two repos)",
+  "identity": {
+    "note": "RUN-TIME-ONLY identity minted by quilt-jev-toolkit examples/keyring-mint.mjs; the private key never left this process and is NOT in this receipt. Re-runs mint a fresh identity — verdicts are structural.",
+    "fingerprint": "2f9fececeec02ce6d5e56669968ba4f9b3d5cff4da794578f1d05fbabc68af2c",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAIK2z5yUTy4NrI/vgoKiE9Lb2Wr5ocIujzKklaOk0tZU=\n-----END PUBLIC KEY-----\n",
+    "helper": "quilt-jev-toolkit/examples/keyring-mint.mjs mintKeyring()"
+  },
+  "seal": {
+    "alg": "Ed25519",
+    "seq": 3,
+    "hash": "cf0fbce20e02e7404943c7a59961969f5e8cd9c8fa50a610b7271890b7a42f6d",
+    "manifestHash": "5cb47311eaeb9a88a623b16b15f5fd4ca41fe009b9d0150f651052ae298f1b35",
+    "publicKeyFingerprint": "2f9fececeec02ce6d5e56669968ba4f9b3d5cff4da794578f1d05fbabc68af2c",
+    "sig": "48220fb5b134fb34cdb78afd626635bb726d39c17367a54918c8d955c96d21eb548e3708cc10a92f13ba650feef09b9bc5c6dbfa3f86a9c0d6b9cc0971a0af03"
+  },
+  "organLaw": {
+    "verifier": "quilt-jev-toolkit src/organ/boot.mjs verifySignedCheckpoint + verifyCheckpointEd25519",
+    "boot": "src/organ/chronoOps.js bootChrono → custody {kind:\"chrono-seal\", alg:\"Ed25519\"}",
+    "results": {
+      "verifySignedCheckpoint": {
+        "ok": true
+      },
+      "verifyCheckpointEd25519": {
+        "ok": true
+      }
+    }
+  },
+  "chronoLaw": {
+    "verifier": "quilt-chrono src/seal.js verifySeal + verifyCustody",
+    "results": {
+      "verifySeal": {
+        "ok": true,
+        "seq": 3,
+        "chainTip": "cf0fbce20e02e7404943c7a59961969f5e8cd9c8fa50a610b7271890b7a42f6d",
+        "manifestHash": "5cb47311eaeb9a88a623b16b15f5fd4ca41fe009b9d0150f651052ae298f1b35"
+      }
+    }
+  },
+  "steps": [
+    {
+      "step": "identity.mint",
+      "ok": true,
+      "detail": "mintKeyring() identity fingerprint 2f9fececeec02ce6… (private key stays runtime-only)"
+    },
+    {
+      "step": "chrono.seal",
+      "ok": true,
+      "detail": "seal(alg:\"Ed25519\") minted checkpoint at seq 3; signer named 2f9fececeec02ce6…"
+    },
+    {
+      "step": "chrono.verify",
+      "ok": true,
+      "detail": "verifySeal ok (seq 3); verifyCustody ok over the full chain (replay state 2 cells)"
+    },
+    {
+      "step": "toolkit.verify",
+      "ok": true,
+      "detail": "verifySignedCheckpoint ok:true + verifyCheckpointEd25519 ok:true (the organ doorway, zero chrono code)"
+    },
+    {
+      "step": "toolkit.bootChrono",
+      "ok": true,
+      "detail": "bootChrono custody {kind:\"chrono-seal\", alg:\"Ed25519\"}; organ state {\"sensor.tide\":{\"kind\":\"value\",\"value\":3.1},\"sink.almanac\":{\"kind\":\"value\",\"value\":3.1}}"
+    },
+    {
+      "step": "fail-closed.probes",
+      "ok": true,
+      "detail": "forged sig → CHECKPOINT_SIGNATURE_INVALID/CHECKPOINT_SIGNATURE_INVALID; wrong key → CHECKPOINT_SIGNATURE_INVALID; tampered link → RECEIPT_HASH_MISMATCH"
+    }
+  ],
+  "ok": true
+}
