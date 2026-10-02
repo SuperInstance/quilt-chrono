@@ -1,7 +1,7 @@
 {
   "name": "quilt-chrono",
-  "version": "0.1.0",
-  "description": "Time as a first-class dimension of the quilt: an append-only reading/writing ledger over a tiny reactive cell core, with projections (stateAt, diff, flowMap, SVG) and rewind.",
+  "version": "0.2.0",
+  "description": "Time as a first-class dimension of the quilt: an append-only reading/writing ledger over a tiny reactive cell core, with projections (stateAt, diff, flowMap, SVG) and rewind; signed custody via organ-checkpoint-exact seals (src/seal.js).",
   "type": "module",
   "main": "src/flow.js",
   "scripts": {
@@ -22,11 +22,13 @@
     "node": ">=18"
   },
   "quilt": {
-    "lane": "66-b",
-    "wave": 66,
+    "lane": "67-a",
+    "wave": 67,
     "schemas": {
       "snapshot": "quilt.chrono.snapshot/v1",
-      "ledger-entry": "quilt.chrono.entry/v1"
+      "ledger-entry": "quilt.chrono.entry/v1",
+      "chain-sidecar": "organ receipt chain (one link per chrono entry, op = the entry)",
+      "seal": "quilt.organ.checkpoint v1 (HMAC-SHA256), byte-exact with quilt-jev-toolkit organ v2"
     }
   }
 }

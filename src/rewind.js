@@ -11,11 +11,17 @@
 // the organ protocol's checkpoint machinery signs, and restore() is
 // boot-from-checkpoint; hash-chain verification and signed custody belong to
 // the organ, not here.
+//
+// Since lane 67-a the signed-custody glue exists in src/seal.js: restore()
+// accepts an optional `custody` claim ({checkpoint, key, chainFile|links,
+// entries|ledger}) and runs the organ-format courtroom (verifyCustody) BEFORE
+// any boot materializes — a history that fails custody never boots.
 
 import crypto from 'node:crypto';
 import { stateAt } from './projection.js';
 import { Chrono } from './flow.js';
 import { Clock, ledgerError } from './ledger.js';
+import { verifyCustody } from './seal.js';
 
 export const SNAPSHOT_SCHEMA = 'quilt.chrono.snapshot/v1';
 
@@ -74,7 +80,18 @@ export function snapshot(subject, t = null, { note = '' } = {}) {
  *                     the provided ledger as cause "restore" writes (the new
  *                     incarnation's ledger starts from the booted state)
  */
-export function restore(snap, { spec = null, ledger = null, clock = null } = {}) {
+export function restore(snap, { spec = null, ledger = null, clock = null, custody = null } = {}) {
+  if (custody) {
+    // SIGNED CUSTODY BEFORE BOOT (lane 67-a): the checkpoint signature, the
+    // hash chain, the anchored manifest, and the replayed state are all
+    // verified fail-closed FIRST — nothing is materialized on a failed court.
+    verifyCustody(custody.checkpoint, custody.key, {
+      links: custody.links ?? null,
+      chainFile: custody.chainFile ?? null,
+      entries: custody.entries ?? null,
+      ledger: custody.ledger ?? null,
+    });
+  }
   if (!snap || snap.kind !== SNAPSHOT_SCHEMA) {
     throw ledgerError('RESTORE_BAD_SNAPSHOT', `expected kind ${SNAPSHOT_SCHEMA}`);
   }

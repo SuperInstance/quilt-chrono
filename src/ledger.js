@@ -322,6 +322,7 @@ export function loadLedger(file, { clock = null } = {}) {
   }
   const ledger = new Ledger({ clock: clock ?? new Clock({ startMs: entries.length ? Date.parse(entries[entries.length - 1].ts_utc) : null }) });
   ledger.entries = entries;
+  ledger.file = file; // lane 67-a fix: the docstring promised "further appends continue the file (append mode)" but the handle was never wired — a loaded ledger silently dropped persistence. Appends now extend the same file, append-only as before.
   ledger._flowCounter = entries.length; // keep future flow ids unique vs loaded ones
   for (const e of entries) if (e.flow_id != null) ledger._indexFlow(e);
   return ledger;

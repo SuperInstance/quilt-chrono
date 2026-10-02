@@ -157,10 +157,89 @@ Division of custody, one line each:
 Concretely: `snapshot(engine, t)` produces exactly the **replay seed** the organ
 checkpoint machinery signs — `{cells, state_hash, at:{ts,seq}}` is the seed's
 content-addressed claim, and `restore(snap)` is boot-from-checkpoint with the
-formulas re-registered from a spec. A future lane can hash-chain chrono's jsonl
-and hand the tip to `checkpoint.mjs` for signed custody without touching a line
-of this repo's algebra: `ledger.tipHash()` (sha256 over the canonical jsonl) is
-already the anchor.
+formulas re-registered from a spec. That future lane arrived: §4b is the
+signed-custody glue, and `ledger.tipHash()` (sha256 over the canonical jsonl)
+remains the O(n) whole-file fingerprint — the seal adds the *incremental,
+organ-verifiable* anchor (`chainTip`) beside it.
+
+### 4b. Signed custody — the seal (lane 67-a)
+
+The wave-66 hand-off asked for: "hash-chain the chrono jsonl and hand tipHash
+to quilt-jev-toolkit's checkpoint.mjs — the seed shape already matches." The
+claim was verified against the actual code before believing it: organ seed is
+`{seq, cells:{id:{kind,value}}}`, chrono snapshot carries `cells:{id:{value,kind}}`
++ `at.seq` — *shape*-true, but not drop-in (the seed is exactly two fields, and
+a full organ `boot()` additionally replays `applyOp`-shaped receipts, which
+chrono entries are not). So the glue was built at the layer that CAN match
+exactly — the checkpoint document itself — and made byte-exact rather than
+similar.
+
+**What was built** (`src/seal.js`, stdlib-only, zero deps):
+
+1. **The chain sidecar** `<ledger>.chain.jsonl` — one link per entry,
+   `{seq, op: <chrono entry verbatim>, prev, hash}`, `hash =
+   sha256(canonicalJson({seq, op, prev}))` anchored at `GENESIS`. The brief's
+   formula (`h = sha256(prev_h || canonical(entry))`) is subsumed by the organ
+   receipt formula (`makeReceipt` in organ `manifest.mjs`): prev AND entry AND
+   position are all covered, and the link IS an organ receipt — the organ
+   toolkit's own `verifyChain`/`receiptHash` verify the sidecar unmodified.
+   The sidecar writer is append-only by construction (byte-prefix check →
+   `CHAIN_REWRITE_REFUSED`; never extend a broken chain; create-only on
+   first write). The original ledger bytes are never opened for writing.
+2. **The seal** — `seal(ledger, {key, seq?, chainFile?, organId?, supersedes?})`
+   derives the prefix state (fold of writes ≤ seq; reads are observations, not
+   transitions), wraps it in a `quilt.organ.manifest/v1` (per-cell
+   `sha256Json({kind:'value', value})` stateHashes, `state.cellsSha256`,
+   `receiptRange [0..seq]`, `genesis {seq:0, prevHash:'GENESIS'}`), and signs
+   the organ triple `canonical({hash, manifestHash, seq})` with HMAC-SHA256
+   under the caller's key — the exact `checkpointSigningPayload` bytes of
+   organ `boot.mjs`. The emitted document has NO chrono-specific fields.
+3. **The courtroom** — `verifySeal` (structure + signature, organ codes
+   `CHECKPOINT_SIGNATURE_REQUIRED/MALFORMED/INVALID`) and `verifyCustody`
+   (chain re-hash → boundary anchor → manifest re-hash to the SIGNED
+   manifestHash → state replay from the chain → optional ledger witness).
+   `restore(snap, {custody})` runs it BEFORE materializing anything.
+
+**Alternatives considered (the ideation pass for this slice):**
+
+- **In-band chaining** (append `h`/`prev` columns to the ledger entries
+  themselves): rejected — it rewrites the entry schema (`quilt.chrono.entry/v1`
+  is sealed and consumed by projections), breaks byte-compatibility with every
+  existing ledger, and makes the ledger unusable without the hasher. The
+  sidecar keeps the original bytes sovereign; the chain can be re-derived,
+  verified, or thrown away without touching history.
+- **A chrono-native signature format** ("quilt.chrono.seal/v1", our own
+  fields): rejected — this is exactly how parallel standards start. The organ
+  protocol already owns signed custody with named fail-closed codes and a
+  spec; matching it byte-for-byte means every organ verifier (and every future
+  organ tool) accepts chrono seals for free. Proven: the interop tests call
+  the organ's real `verifySignedCheckpoint`, `verifyChain`, `validateManifest`,
+  `computeManifestHash` on chrono output.
+- **Import organ code at runtime** (`import from '../quilt-jev-toolkit/...'`):
+  rejected — cross-repo file imports break standalone use and pin a sibling
+  checkout. Instead: the ~60 lines of law (canonicalJson, sha256, HMAC, the
+  triple) are re-derived with citations, and the interop tests import the
+  sibling IF PRESENT (skip-if-absent) to prove byte-equality — equivalence is
+  tested, not assumed.
+
+**Honest scope (inherited, spec §8.3):** the signature vouches for the PREFIX —
+boundary chainTip, anchored manifest, state at seq. Post-boundary entries are
+chain-guarded (any byte flip at any offset is named); a fully re-hashed tail is
+a different fork, not a detectable forgery — the organ spec says the same about
+its own checkpoints. Re-sealing tightens the window; Ed25519 "who vouches" is
+the organ v3 path and this format refuses unknown algs today.
+
+**One inherited defect found and fixed:** `loadLedger()` documented "further
+appends continue the file" but never wired the file handle — a loaded ledger
+silently dropped persistence. Fixed additively (`ledger.file = file`); appends
+now extend the file append-only as documented, which is also what makes
+load → seal → append → re-seal honest on disk.
+
+**Parked for a later lane:** a full organ `boot()` of a chrono ledger needs an
+organ-side chrono-op adapter (the three-function adaptation point
+`quiltApply/applyOp/stateOf` is already documented in organ `toyQuilt.mjs`);
+edges in the seal manifest (a bare-ledger seal proves values; flow edges are a
+projection concern); an O(tail) `stateAt` booting from the sealed seed.
 
 ## 5. Honest residuals
 

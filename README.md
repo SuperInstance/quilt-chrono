@@ -30,7 +30,7 @@ value rides the next crest.
 ## Quickstart
 
 ```bash
-npm test        # 37/37 green, node --test, zero network
+npm test        # 52/52 green, node --test, zero network
 npm run example # the tide demo: 9 cells, 40 steps -> examples/tide/outputs/
 ```
 
@@ -90,6 +90,55 @@ and the *latest* value rides the next crest (or `engine.flushTide()` forces it o
 band as `tide-flush`). Time-throttled propagation, not lossy dropping: the sheet
 shows the holds, not just the landings.
 
+## Signed custody (the seal — lane 67-a)
+
+The ledger is append-only and tamper-*evident by convention*; the seal makes it
+tamper-*evident by cryptography*, without touching a byte of the ledger file.
+
+```js
+import { seal, verifyCustody } from 'quilt-chrono/src/seal.js';
+
+const { checkpoint } = seal(sheet.ledger, { key: process.env.CHRONO_SEAL_KEY });
+// checkpoint is a quilt.organ.checkpoint — the organ protocol v2 document, EXACTLY:
+// { schema: "quilt.organ.checkpoint", schemaVersion: 1, alg: "HMAC-SHA256",
+//   seq, hash: <chainTip at seq>, manifestHash, sig, manifest }
+//   where sig = HMAC-SHA256(key, canonical({hash, manifestHash, seq}))
+
+verifyCustody(checkpoint, key, { chainFile, ledger }); // the courtroom, before boot
+```
+
+How it works, in three laws:
+
+1. **The chain lives in a sidecar.** `ledger.chain.jsonl` holds one link per
+   ledger entry — `{seq, op: <the chrono entry verbatim>, prev, hash}` where
+   `hash = sha256(canonical({seq, op, prev}))`, anchored at `GENESIS`. That is
+   the organ receipt formula, so a link **is** an organ receipt whose op is a
+   chrono entry: the organ toolkit's own `verifyChain()`/`receiptHash()` verify
+   the sidecar unmodified (proven in the test suite against the real organ
+   code). The original `ledger.jsonl` bytes are never opened for writing;
+   sidecar writes are append-only by construction (`CHAIN_REWRITE_REFUSED`
+   otherwise), and a sidecar can only ever be extended.
+2. **The seal is the organ's checkpoint, byte-for-byte.** `seal()` derives the
+   prefix state (fold of writes ≤ seq), wraps it in a
+   `quilt.organ.manifest/v1` (content-addressed `manifestHash`), and signs the
+   organ triple `{hash, manifestHash, seq}` with HMAC-SHA256 under the
+   caller-provided key. Spec: `quilt-jev-toolkit/docs/REVERSE-ACTUALIZED-SPEC.md`
+   §8. No chrono-specific fields are added — drift is how parallel standards
+   start. `restore(snap, { custody: { checkpoint, key, chainFile } })` runs the
+   full courtroom **before** anything boots.
+3. **Honest scope, inherited from the organ spec.** The signature vouches for
+   the *prefix*: the boundary chain tip, the anchored manifest, the state at
+   `seq`. Post-boundary entries are guarded by the hash chain (any byte flip,
+   at any offset, is a named error: `RECEIPT_HASH_MISMATCH`, `CHAIN_GAP`,
+   `CHAIN_ENTRY_MISMATCH`); a fully re-hashed tail is a different fork, not a
+   detectable forgery — seal again to tighten the window. Wrong key ⇒
+   `CHECKPOINT_SIGNATURE_INVALID`; missing key ⇒
+   `CHECKPOINT_SIGNATURE_REQUIRED`.
+
+Old seals survive honest growth: append entries, re-seal (identity carried
+forward via `organId`, lineage via `supersedes`) — the earlier checkpoint still
+verifies at its own boundary.
+
 ## Rewind (with the organ protocol, not instead of it)
 
 `snapshot(engine, t)` → hash-pinned `quilt.chrono.snapshot/v1` (canonical-JSON sha256
@@ -99,11 +148,14 @@ not future — nothing re-evaluates until something moves again), optionally jou
 the boot as `cause: "restore"` writes. Snapshots are tamper-evident: a mutated
 snapshot refuses to boot (`RESTORE_HASH_MISMATCH`).
 
-Custody, hash-chain verification, and signed checkpoints are deliberately **NOT
-reimplemented** here — `quilt-jev-toolkit`'s organ protocol owns that
-(`src/organ/snapshot.mjs`, `src/organ/rewind.mjs`, `src/organ/checkpoint.mjs`). A
-chrono snapshot is exactly the replay *seed* the organ checkpoint machinery signs;
-DESIGN.md §4 maps the two.
+Custody *law* (the courtroom codes, the boot rules, the nesting rules) remains
+**owned** by `quilt-jev-toolkit`'s organ protocol (`src/organ/snapshot.mjs`,
+`src/organ/rewind.mjs`, `src/organ/checkpoint.mjs`, `src/organ/boot.mjs`). What
+this repo now carries is the glue (see “Signed custody” above): `src/seal.js`
+mints organ-EXACT signed checkpoints over the chrono chain — the formats match
+byte-for-byte (proven by tests against the organ's own verifiers), no custody
+law is re-decided here. A chrono snapshot is exactly the replay *seed* the
+organ checkpoint machinery signs; DESIGN.md §4/§4b map the two.
 
 ## Examples/tide outputs (deterministic: fixed clock, seeded noise)
 
@@ -136,7 +188,8 @@ src/flow.js        the reactive core: cells, dirty-marking, pull, push, tide
 src/ledger.js      the time ledger: append-only, frozen, double-entry, jsonl
 src/projection.js  stateAt / diff / flowMap / renderSVG / renderTable (pure views)
 src/rewind.js      snapshot / restore (hash-pinned, organ-compatible seeds)
+src/seal.js        signed custody: chain sidecar + organ-checkpoint-EXACT seals
 examples/tide/     40 simulated steps of a 9-cell sheet
-tests/             37 node --test tests, no network
+tests/             52 node --test tests, no network
 scripts/keyscan.mjs  fleet-standard secret scanner (run before every push)
 ```
