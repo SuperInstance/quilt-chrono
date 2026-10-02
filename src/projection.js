@@ -11,6 +11,8 @@
 // and (t1, t2] for flows/diffs (change needs a before and an after).
 
 import crypto from 'node:crypto';
+import { flowStream, rateOf, accumSeries, derivedCellId, DEADBAND_EPSILON } from './calculus.js';
+import { ledgerError } from './ledger.js';
 
 // ---------------------------------------------------------------------------
 // bounds
@@ -166,7 +168,10 @@ export function renderSVG(ledger, t1, t2, opts = {}) {
   const {
     width = 980, rowH = 34, padL = 168, padR = 28, padT = 78, padB = 46,
     title = 'quilt-chrono — flow projection', maxArcs = 600,
+    overlay = null,          // { cell, mode: 'rate'|'accum', window, deadband, unit, scale }
+    renderedAt = null,       // pin for byte-deterministic double runs (tests, receipts)
   } = opts;
+  const at = renderedAt ?? new Date().toISOString();
 
   // window entries (t1, t2]
   const win = ledger.entries.filter((e) => afterBound(e, start) && atOrBefore(e, end));
@@ -211,6 +216,56 @@ export function renderSVG(ledger, t1, t2, opts = {}) {
   }
   const arcNote = arcs.length > maxArcs ? ` (showing first ${maxArcs} of ${arcs.length})` : '';
 
+  // calculus overlay (lane 72-c): the derived series drawn ON the source
+  // cell's lane — the derivative/integral as a projection, visually. The
+  // derived values are computed by src/calculus.js over the same window,
+  // normalized into the lane band; nonzero rate readings carry flag diamonds.
+  const overlayParts = [];
+  let overlayNote = '';
+  if (overlay) {
+    const { cell, mode = 'rate', window: ovWindow = 2, deadband = DEADBAND_EPSILON, unit = 'seq', scale = 1 } = overlay;
+    if (mode !== 'rate' && mode !== 'accum') {
+      throw ledgerError('CALCULUS_BAD_OP', `renderSVG overlay: mode ${JSON.stringify(mode)} not registered (rate | accum)`);
+    }
+    const stream = flowStream(ledger, cell, { unit, scale }); // CALCULUS_NO_SUCH_FLOW on a typo'd cell
+    const inWin = stream.filter((s) => afterBound({ ts_utc: s.ts }, start) && atOrBefore({ ts_utc: s.ts }, end));
+    if (inWin.length === 0) {
+      throw ledgerError('CALCULUS_NO_FLOW_DATA', `renderSVG overlay: cell ${JSON.stringify(cell)} carries no numeric flow in the window`);
+    }
+    const derived = mode === 'rate'
+      ? rateOf(inWin, { window: ovWindow, deadband })
+      : accumSeries(inWin, { mode: overlay.accMode ?? 'level' });
+    const pts = derived.filter((r) => r.value !== null && Number.isFinite(r.value)).map((r) => ({ x: x(r.ts), v: r.value }));
+    if (pts.length === 0) {
+      throw ledgerError('CALCULUS_NO_FLOW_DATA', `renderSVG overlay: ${mode}(${cell}) produced no readings in the window`);
+    }
+    if (!laneY.has(cell)) {
+      throw ledgerError('CALCULUS_NO_FLOW_DATA', `renderSVG overlay: cell ${JSON.stringify(cell)} has no lane in the window`);
+    }
+    const vals = pts.map((p) => p.v);
+    if (mode === 'rate') vals.push(0); // the zero line is meaningful for a derivative
+    const vmin = Math.min(...vals), vmax = Math.max(...vals);
+    const yTop = laneY.get(cell) - rowH / 2;
+    const padPx = rowH * 0.16;
+    const yOf = (v) => (vmin === vmax)
+      ? yTop + rowH / 2
+      : yTop + padPx + (1 - (v - vmin) / (vmax - vmin)) * (rowH - 2 * padPx);
+    const color = mode === 'accum' ? '#7ee787' : '#ffa657';
+    const poly = pts.map((p) => `${p.x.toFixed(1)},${yOf(p.v).toFixed(1)}`).join(' ');
+    overlayParts.push(`<polyline class="overlay" points="${poly}" fill="none" stroke="${color}" stroke-width="1.4" stroke-opacity="0.9"/>`);
+    if (mode === 'rate') {
+      for (const p of pts) {
+        if (p.v === 0) continue; // flags: readings that moved (the ε law's nonzero set)
+        const y = yOf(p.v);
+        overlayParts.push(`<rect class="flag" x="${(p.x - 2.4).toFixed(1)}" y="${(y - 2.4).toFixed(1)}" width="4.8" height="4.8" fill="${color}" fill-opacity="0.95" transform="rotate(45 ${p.x.toFixed(1)} ${y.toFixed(1)})"/>`);
+      }
+    }
+    const id = mode === 'rate'
+      ? derivedCellId(cell, 'rate', { window: ovWindow })
+      : derivedCellId(cell, 'accum', { mode: overlay.accMode ?? 'level' });
+    overlayNote = ` \u00b7 overlay: ${esc(id)}${mode === 'rate' ? ` &#949;=${deadband}` : ''}`; // entity, like the rest of the legend
+  }
+
   const parts = [];
   parts.push(`<?xml version="1.0" encoding="UTF-8"?>`);
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" font-family="ui-monospace, Menlo, monospace">`);
@@ -219,7 +274,7 @@ export function renderSVG(ledger, t1, t2, opts = {}) {
   const wCount = writeMarks.length, rCount = readTicks.length, tCount = throttleMarks.length;
   parts.push(`<text x="${padL}" y="30" fill="#e6edf3" font-size="15" font-weight="bold">${esc(title)}</text>`);
   parts.push(`<text x="${padL}" y="50" fill="#8b949e" font-size="11">${esc(start.ts ?? 'begin')} &#8594; ${esc(end.ts ?? 'end')} &#183; lanes: ${laneOrder.length} &#183; writes: ${wCount} &#183; reads: ${rCount} &#183; tide-held: ${tCount} &#183; arcs: ${arcs.length}${esc(arcNote)}</text>`);
-  parts.push(`<text x="${padL}" y="66" fill="#6e7681" font-size="10">legend: write = &#9679; &#183; read = tick &#183; tide-held = &#9697; &#183; push/evaluate flow = arc (read lane &#8594; write lane)</text>`);
+  parts.push(`<text x="${padL}" y="66" fill="#6e7681" font-size="10">legend: write = &#9679; &#183; read = tick &#183; tide-held = &#9697; &#183; push/evaluate flow = arc (read lane &#8594; write lane)${overlayNote}</text>`);
   // time gridlines (8 divisions)
   for (let i = 0; i <= 8; i++) {
     const gx = padL + (innerW * i) / 8;
@@ -239,6 +294,9 @@ export function renderSVG(ledger, t1, t2, opts = {}) {
     const cy = Math.min(y1, y2) - 12; // control point above the chord: the arc leaps
     parts.push(`<path class="arc" d="M ${a.x.toFixed(1)} ${y1.toFixed(1)} Q ${a.x.toFixed(1)} ${cy.toFixed(1)} ${a.x.toFixed(1)} ${y2.toFixed(1)}" fill="none" stroke="hsl(${a.hue},80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>${esc(`${a.from} -&gt; ${a.to}`)}</title></path>`);
   }
+  // calculus overlay (under the marks: marks are the ground truth, the
+  // derivative is the view)
+  for (const opart of overlayParts) parts.push(opart);
   // read ticks
   for (const r of readTicks) {
     const y = laneY.get(r.cell);
@@ -257,7 +315,7 @@ export function renderSVG(ledger, t1, t2, opts = {}) {
     const fill = w.cause === 'correction' ? '#f85149' : `hsl(${hue},75%,62%)`;
     parts.push(`<circle class="wr" cx="${x(w.ts_utc).toFixed(1)}" cy="${y.toFixed(1)}" r="${w.cause === 'correction' ? 4.6 : 3.1}" fill="${fill}" fill-opacity="0.92"><title>${esc(`${w.seq} ${w.cell} = ${JSON.stringify(w.value)} (${w.cause})`)}</title></circle>`);
   }
-  parts.push(`<text x="12" y="${height - 14}" fill="#6e7681" font-size="10">${esc(`quilt.chrono.entry/v1 &#183; ledger tip seq ${ledger.entries.length - 1} &#183; rendered from the actual ledger, ${new Date().toISOString()}`)}</text>`);
+  parts.push(`<text x="12" y="${height - 14}" fill="#6e7681" font-size="10">${esc(`quilt.chrono.entry/v1 &#183; ledger tip seq ${ledger.entries.length - 1} &#183; rendered from the actual ledger, ${at}`)}</text>`);
   parts.push(`</svg>`);
   return parts.join('\n');
 }
