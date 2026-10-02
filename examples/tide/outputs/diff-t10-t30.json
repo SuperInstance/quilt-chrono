@@ -1,0 +1,56 @@
+{
+  "t1": {
+    "ts": "2026-09-21T14:13:30.000Z",
+    "seq": 128
+  },
+  "t2": {
+    "ts": "2026-09-21T14:13:50.000Z",
+    "seq": 401
+  },
+  "changes": [
+    {
+      "cell": "health",
+      "from": "HOT",
+      "to": "nominal",
+      "writes": 1
+    },
+    {
+      "cell": "sensor.calibrated",
+      "from": 183.9,
+      "to": 77.3,
+      "writes": 20
+    },
+    {
+      "cell": "sensor.raw",
+      "from": 91.13,
+      "to": 39.61,
+      "writes": 20
+    },
+    {
+      "cell": "sink.alert",
+      "from": 170.9,
+      "to": 71.6,
+      "writes": 4
+    },
+    {
+      "cell": "sink.display",
+      "from": 183.9,
+      "to": 77.3,
+      "writes": 20
+    },
+    {
+      "cell": "sink.log",
+      "from": "raw=91.44",
+      "to": "raw=38.15",
+      "writes": 20
+    },
+    {
+      "cell": "voice",
+      "from": null,
+      "to": "reading 73.3 — nominal; tide flows.",
+      "writes": 2
+    }
+  ],
+  "unchanged": 2,
+  "cells": 9
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "tide-demo-run",
+  "steps": 40,
+  "live": false,
+  "cells": 9,
+  "ledger_entries": 547,
+  "tip_hash": "sha256:cddcbc8d202c272e2c2c9ff598c62b3021d9928e8c1fc34d5256351344436b87",
+  "balanced": true,
+  "unbalanced_writes": 0,
+  "orphan_reads": 37,
+  "story": {
+    "spikeWriteSeq": 238,
+    "correctionSeq": 264,
+    "voicePulls": 2,
+    "liveCalls": 0
+  },
+  "voice_value": "reading 73.3 — nominal; tide flows.",
+  "live_usage": null
+}

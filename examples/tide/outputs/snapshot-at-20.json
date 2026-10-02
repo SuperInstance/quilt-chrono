@@ -1,0 +1,50 @@
+{
+  "kind": "quilt.chrono.snapshot/v1",
+  "name": "tide-demo",
+  "at": {
+    "ts": "2026-09-21T14:13:40.000Z",
+    "seq": 264
+  },
+  "cells": {
+    "sensor.raw": {
+      "value": 59.3,
+      "kind": "value"
+    },
+    "cal.gain": {
+      "value": 2,
+      "kind": "value"
+    },
+    "cal.offset": {
+      "value": 1,
+      "kind": "value"
+    },
+    "sink.display": {
+      "value": 111.2,
+      "kind": "value"
+    },
+    "sink.alert": {
+      "value": 134.6,
+      "kind": "value"
+    },
+    "sink.log": {
+      "value": "raw=55.08",
+      "kind": "value"
+    },
+    "sensor.calibrated": {
+      "value": 111.2,
+      "kind": "formula"
+    },
+    "health": {
+      "value": "HOT",
+      "kind": "formula"
+    },
+    "voice": {
+      "value": "reading 183.3 — HOT; tide flows.",
+      "kind": "ai"
+    }
+  },
+  "state_hash": "sha256:4b3cac82597ecab5311819c06d2acf4df2ed7ef8f6a1596ee509e58a3fcdf1b5",
+  "ledger_tip_seq": 546,
+  "ledger_entries_below": 265,
+  "note": "stable point: post-correction, pre-crest"
+}

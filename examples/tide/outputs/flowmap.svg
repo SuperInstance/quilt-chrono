@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430" font-family="ui-monospace, Menlo, monospace">
+<rect width="980" height="430" fill="#0d1117"/>
+<text x="168" y="30" fill="#e6edf3" font-size="15" font-weight="bold">tide-demo — 40 steps of the quilt with a playhead</text>
+<text x="168" y="50" fill="#8b949e" font-size="11">begin &#8594; 2026-09-21T14:14:00.016Z &#183; lanes: 9 &#183; writes: 180 &#183; reads: 335 &#183; tide-held: 32 &#183; arcs: 216</text>
+<text x="168" y="66" fill="#6e7681" font-size="10">legend: write = &#9679; &#183; read = tick &#183; tide-held = &#9697; &#183; push/evaluate flow = arc (read lane &#8594; write lane)</text>
+<line x1="168.0" y1="72" x2="168.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="266.0" y1="72" x2="266.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="364.0" y1="72" x2="364.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="462.0" y1="72" x2="462.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="560.0" y1="72" x2="560.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="658.0" y1="72" x2="658.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="756.0" y1="72" x2="756.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="854.0" y1="72" x2="854.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<line x1="952.0" y1="72" x2="952.0" y2="392" stroke="#21262d" stroke-width="1"/>
+<rect x="0" y="78" width="980" height="34" fill="#11161d"/>
+<line x1="168" y1="112.0" x2="952" y2="112.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="99.0" fill="hsl(190,70%,72%)" font-size="11">sensor.raw</text>
+<rect x="0" y="112" width="980" height="34" fill="#161b22"/>
+<line x1="168" y1="146.0" x2="952" y2="146.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="133.0" fill="hsl(14,70%,72%)" font-size="11">cal.gain</text>
+<rect x="0" y="146" width="980" height="34" fill="#11161d"/>
+<line x1="168" y1="180.0" x2="952" y2="180.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="167.0" fill="hsl(239,70%,72%)" font-size="11">cal.offset</text>
+<rect x="0" y="180" width="980" height="34" fill="#161b22"/>
+<line x1="168" y1="214.0" x2="952" y2="214.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="201.0" fill="hsl(184,70%,72%)" font-size="11">sink.display</text>
+<rect x="0" y="214" width="980" height="34" fill="#11161d"/>
+<line x1="168" y1="248.0" x2="952" y2="248.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="235.0" fill="hsl(3,70%,72%)" font-size="11">sink.alert</text>
+<rect x="0" y="248" width="980" height="34" fill="#161b22"/>
+<line x1="168" y1="282.0" x2="952" y2="282.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="269.0" fill="hsl(58,70%,72%)" font-size="11">sink.log</text>
+<rect x="0" y="282" width="980" height="34" fill="#11161d"/>
+<line x1="168" y1="316.0" x2="952" y2="316.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="303.0" fill="hsl(111,70%,72%)" font-size="11">sensor.calibrated</text>
+<rect x="0" y="316" width="980" height="34" fill="#161b22"/>
+<line x1="168" y1="350.0" x2="952" y2="350.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="337.0" fill="hsl(98,70%,72%)" font-size="11">health</text>
+<rect x="0" y="350" width="980" height="34" fill="#11161d"/>
+<line x1="168" y1="384.0" x2="952" y2="384.0" stroke="#21262d" stroke-width="1"/>
+<text x="12" y="371.0" fill="hsl(197,70%,72%)" font-size="11">voice</text>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 287.0 952.0 333.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; health</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 287.0 952.0 367.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; voice</title></path>
+<path class="arc" d="M 952.0 333.0 Q 952.0 321.0 952.0 367.0" fill="none" stroke="hsl(98,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>health -&amp;gt; voice</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 287.0 952.0 333.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; health</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 287.0 952.0 367.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; voice</title></path>
+<path class="arc" d="M 952.0 333.0 Q 952.0 321.0 952.0 367.0" fill="none" stroke="hsl(98,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>health -&amp;gt; voice</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 287.0 952.0 333.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; health</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 219.0 952.0 231.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.alert</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 265.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sink.log</title></path>
+<path class="arc" d="M 952.0 95.0 Q 952.0 83.0 952.0 299.0" fill="none" stroke="hsl(190,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.raw -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 129.0 Q 952.0 117.0 952.0 299.0" fill="none" stroke="hsl(14,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.gain -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 163.0 Q 952.0 151.0 952.0 299.0" fill="none" stroke="hsl(239,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>cal.offset -&amp;gt; sensor.calibrated</title></path>
+<path class="arc" d="M 952.0 299.0 Q 952.0 185.0 952.0 197.0" fill="none" stroke="hsl(111,80%,62%)" stroke-opacity="0.34" stroke-width="1.1"><title>sensor.calibrated -&amp;gt; sink.display</title></path>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="363.0" x2="952.0" y2="371.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="363.0" x2="952.0" y2="371.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="91.0" x2="952.0" y2="99.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="125.0" x2="952.0" y2="133.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="159.0" x2="952.0" y2="167.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="329.0" x2="952.0" y2="337.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<line x1="952.0" y1="295.0" x2="952.0" y2="303.0" stroke="#58a6ff" stroke-opacity="0.5" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<path d="M 952.0 295.5 L 949.0 302.5 L 955.0 302.5 Z" fill="none" stroke="#d29922" stroke-opacity="0.8" stroke-width="1"/>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>0 sensor.raw = 60 (init)</title></circle>
+<circle class="wr" cx="952.0" cy="129.0" r="3.1" fill="hsl(14,75%,62%)" fill-opacity="0.92"><title>1 cal.gain = 2 (init)</title></circle>
+<circle class="wr" cx="952.0" cy="163.0" r="3.1" fill="hsl(239,75%,62%)" fill-opacity="0.92"><title>2 cal.offset = 1 (init)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>3 sink.display = null (init)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>4 sink.alert = null (init)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>5 sink.log = null (init)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>7 sink.log = &quot;raw=60&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>8 sensor.raw = 66.07 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>10 sink.log = &quot;raw=66.07&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>15 sensor.calibrated = 133.1 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>17 sink.display = 133.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>19 sink.alert = 133.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="333.0" r="3.1" fill="hsl(98,75%,62%)" fill-opacity="0.92"><title>22 health = &quot;HOT&quot; (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>23 sensor.raw = 70.31 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>25 sink.log = &quot;raw=70.31&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>30 sensor.calibrated = 141.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>32 sink.display = 141.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>36 sensor.raw = 76.84 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>38 sink.log = &quot;raw=76.84&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>43 sensor.calibrated = 154.7 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>45 sink.display = 154.7 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>49 sensor.raw = 79.51 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>51 sink.log = &quot;raw=79.51&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>56 sensor.calibrated = 160 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>58 sink.display = 160 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>62 sensor.raw = 83.59 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>64 sink.log = &quot;raw=83.59&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>69 sensor.calibrated = 168.2 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>71 sink.display = 168.2 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>75 sensor.raw = 84.94 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>77 sink.log = &quot;raw=84.94&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>82 sensor.calibrated = 170.9 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>84 sink.display = 170.9 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>86 sink.alert = 170.9 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>89 sensor.raw = 88.55 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>91 sink.log = &quot;raw=88.55&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>96 sensor.calibrated = 178.1 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>98 sink.display = 178.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>102 sensor.raw = 88.28 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>104 sink.log = &quot;raw=88.28&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>109 sensor.calibrated = 177.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>111 sink.display = 177.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>115 sensor.raw = 91.44 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>117 sink.log = &quot;raw=91.44&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>122 sensor.calibrated = 183.9 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>124 sink.display = 183.9 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>128 sensor.raw = 91.13 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>130 sink.log = &quot;raw=91.13&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>135 sensor.calibrated = 183.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>137 sink.display = 183.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="367.0" r="3.1" fill="hsl(197,75%,62%)" fill-opacity="0.92"><title>144 voice = &quot;reading 183.3 — HOT; tide flows.&quot; (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>145 sensor.raw = 88.87 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>147 sink.log = &quot;raw=88.87&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>152 sensor.calibrated = 178.7 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>154 sink.display = 178.7 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>156 sink.alert = 178.7 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>159 sensor.raw = 84.93 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>161 sink.log = &quot;raw=84.93&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>166 sensor.calibrated = 170.9 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>168 sink.display = 170.9 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>172 sensor.raw = 82.22 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>174 sink.log = &quot;raw=82.22&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>179 sensor.calibrated = 165.4 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>181 sink.display = 165.4 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>185 sensor.raw = 79.17 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>187 sink.log = &quot;raw=79.17&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>192 sensor.calibrated = 159.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>194 sink.display = 159.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>198 sensor.raw = 73.66 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>200 sink.log = &quot;raw=73.66&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>205 sensor.calibrated = 148.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>207 sink.display = 148.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>211 sensor.raw = 66.81 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>213 sink.log = &quot;raw=66.81&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>218 sensor.calibrated = 134.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>220 sink.display = 134.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>222 sink.alert = 134.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>225 sensor.raw = 61.98 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>227 sink.log = &quot;raw=61.98&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>232 sensor.calibrated = 125 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>234 sink.display = 125 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>238 sensor.raw = 115.14 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>240 sink.log = &quot;raw=115.14&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>245 sensor.calibrated = 231.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>247 sink.display = 231.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>251 sensor.raw = 55.08 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>253 sink.log = &quot;raw=55.08&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>258 sensor.calibrated = 111.2 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>260 sink.display = 111.2 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="4.6" fill="#f85149" fill-opacity="0.92"><title>264 sensor.raw = 59.3 (correction)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>266 sink.log = &quot;raw=59.3&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>271 sensor.calibrated = 119.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>273 sink.display = 119.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>277 sensor.raw = 44.67 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>279 sink.log = &quot;raw=44.67&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>284 sensor.calibrated = 90.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>286 sink.display = 90.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>288 sink.alert = 90.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="333.0" r="3.1" fill="hsl(98,75%,62%)" fill-opacity="0.92"><title>291 health = &quot;nominal&quot; (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>292 sensor.raw = 39.53 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>294 sink.log = &quot;raw=39.53&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>299 sensor.calibrated = 80.1 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>301 sink.display = 80.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>305 sensor.raw = 38.05 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>307 sink.log = &quot;raw=38.05&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>312 sensor.calibrated = 77.1 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>314 sink.display = 77.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>318 sensor.raw = 34.72 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>320 sink.log = &quot;raw=34.72&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>325 sensor.calibrated = 70.4 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>327 sink.display = 70.4 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>331 sensor.raw = 36.16 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>333 sink.log = &quot;raw=36.16&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>338 sensor.calibrated = 73.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>340 sink.display = 73.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="367.0" r="3.1" fill="hsl(197,75%,62%)" fill-opacity="0.92"><title>347 voice = &quot;reading 73.3 — nominal; tide flows.&quot; (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>348 sensor.raw = 35.29 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>350 sink.log = &quot;raw=35.29&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>355 sensor.calibrated = 71.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>357 sink.display = 71.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>359 sink.alert = 71.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>362 sensor.raw = 33.16 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>364 sink.log = &quot;raw=33.16&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>369 sensor.calibrated = 67.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>371 sink.display = 67.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>375 sensor.raw = 37.3 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>377 sink.log = &quot;raw=37.3&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>382 sensor.calibrated = 75.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>384 sink.display = 75.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>388 sensor.raw = 38.15 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>390 sink.log = &quot;raw=38.15&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>395 sensor.calibrated = 77.3 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>397 sink.display = 77.3 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>401 sensor.raw = 39.61 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>403 sink.log = &quot;raw=39.61&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>408 sensor.calibrated = 80.2 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>410 sink.display = 80.2 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>414 sensor.raw = 43.22 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>416 sink.log = &quot;raw=43.22&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>421 sensor.calibrated = 87.4 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>423 sink.display = 87.4 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>425 sink.alert = 87.4 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>428 sensor.raw = 49.59 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>430 sink.log = &quot;raw=49.59&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>435 sensor.calibrated = 100.2 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>437 sink.display = 100.2 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>441 sensor.raw = 55.5 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>443 sink.log = &quot;raw=55.5&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>448 sensor.calibrated = 112 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>450 sink.display = 112 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="333.0" r="3.1" fill="hsl(98,75%,62%)" fill-opacity="0.92"><title>454 health = &quot;HOT&quot; (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>455 sensor.raw = 60.55 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>457 sink.log = &quot;raw=60.55&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>462 sensor.calibrated = 122.1 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>464 sink.display = 122.1 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>468 sensor.raw = 64.97 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>470 sink.log = &quot;raw=64.97&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>475 sensor.calibrated = 130.9 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>477 sink.display = 130.9 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>481 sensor.raw = 68.78 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>483 sink.log = &quot;raw=68.78&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>488 sensor.calibrated = 138.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>490 sink.display = 138.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="231.0" r="3.1" fill="hsl(3,75%,62%)" fill-opacity="0.92"><title>492 sink.alert = 138.6 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>495 sensor.raw = 74.37 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>497 sink.log = &quot;raw=74.37&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>502 sensor.calibrated = 149.7 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>504 sink.display = 149.7 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>508 sensor.raw = 79.19 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>510 sink.log = &quot;raw=79.19&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>515 sensor.calibrated = 159.4 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>517 sink.display = 159.4 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>521 sensor.raw = 83.08 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>523 sink.log = &quot;raw=83.08&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>528 sensor.calibrated = 167.2 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>530 sink.display = 167.2 (push)</title></circle>
+<circle class="wr" cx="952.0" cy="95.0" r="3.1" fill="hsl(190,75%,62%)" fill-opacity="0.92"><title>534 sensor.raw = 86.28 (step)</title></circle>
+<circle class="wr" cx="952.0" cy="265.0" r="3.1" fill="hsl(58,75%,62%)" fill-opacity="0.92"><title>536 sink.log = &quot;raw=86.28&quot; (push)</title></circle>
+<circle class="wr" cx="952.0" cy="299.0" r="3.1" fill="hsl(111,75%,62%)" fill-opacity="0.92"><title>541 sensor.calibrated = 173.6 (evaluate)</title></circle>
+<circle class="wr" cx="952.0" cy="197.0" r="3.1" fill="hsl(184,75%,62%)" fill-opacity="0.92"><title>543 sink.display = 173.6 (push)</title></circle>
+<text x="12" y="416" fill="#6e7681" font-size="10">quilt.chrono.entry/v1 &amp;#183; ledger tip seq 546 &amp;#183; rendered from the actual ledger, 2026-10-02T05:22:53.740Z</text>
+</svg>

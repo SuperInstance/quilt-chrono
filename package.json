@@ -1,0 +1,32 @@
+{
+  "name": "quilt-chrono",
+  "version": "0.1.0",
+  "description": "Time as a first-class dimension of the quilt: an append-only reading/writing ledger over a tiny reactive cell core, with projections (stateAt, diff, flowMap, SVG) and rewind.",
+  "type": "module",
+  "main": "src/flow.js",
+  "scripts": {
+    "test": "node --test",
+    "example": "node examples/tide/run.mjs",
+    "keyscan": "node scripts/keyscan.mjs"
+  },
+  "keywords": [
+    "quilt",
+    "reactive",
+    "ledger",
+    "append-only",
+    "time-travel",
+    "spreadsheet"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "quilt": {
+    "lane": "66-b",
+    "wave": 66,
+    "schemas": {
+      "snapshot": "quilt.chrono.snapshot/v1",
+      "ledger-entry": "quilt.chrono.entry/v1"
+    }
+  }
+}

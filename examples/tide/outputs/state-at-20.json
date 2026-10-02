@@ -1,0 +1,20 @@
+{
+  "asOf": {
+    "ts": "2026-09-21T14:13:40.000Z",
+    "seq": 264
+  },
+  "cells": {
+    "sensor.raw": 59.3,
+    "cal.gain": 2,
+    "cal.offset": 1,
+    "sink.display": 111.2,
+    "sink.alert": 134.6,
+    "sink.log": "raw=55.08",
+    "sensor.calibrated": 111.2,
+    "health": "HOT",
+    "voice": "reading 183.3 — HOT; tide flows."
+  },
+  "writes": 90,
+  "reads": 175,
+  "corrections": 1
+}

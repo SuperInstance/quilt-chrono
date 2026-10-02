@@ -1,0 +1,79 @@
+{
+  "t1": {
+    "ts": null,
+    "seq": -1
+  },
+  "t2": {
+    "ts": "2026-09-21T14:14:00.016Z",
+    "seq": 546
+  },
+  "reads": 335,
+  "writes": 180,
+  "flows": 134,
+  "throttled": 32,
+  "edges": [
+    {
+      "from": "sensor.raw",
+      "to": "sink.log",
+      "count": 41,
+      "volume": 0,
+      "throttled": 0
+    },
+    {
+      "from": "cal.gain",
+      "to": "sensor.calibrated",
+      "count": 40,
+      "volume": 5300.000000000001,
+      "throttled": 0
+    },
+    {
+      "from": "cal.offset",
+      "to": "sensor.calibrated",
+      "count": 40,
+      "volume": 5300.000000000001,
+      "throttled": 0
+    },
+    {
+      "from": "sensor.calibrated",
+      "to": "sink.display",
+      "count": 40,
+      "volume": 5300.000000000001,
+      "throttled": 0
+    },
+    {
+      "from": "sensor.raw",
+      "to": "sensor.calibrated",
+      "count": 40,
+      "volume": 5300.000000000001,
+      "throttled": 0
+    },
+    {
+      "from": "sensor.calibrated",
+      "to": "sink.alert",
+      "count": 8,
+      "volume": 1005.1999999999999,
+      "throttled": 32
+    },
+    {
+      "from": "sensor.calibrated",
+      "to": "health",
+      "count": 3,
+      "volume": 0,
+      "throttled": 0
+    },
+    {
+      "from": "health",
+      "to": "voice",
+      "count": 2,
+      "volume": 0,
+      "throttled": 0
+    },
+    {
+      "from": "sensor.calibrated",
+      "to": "voice",
+      "count": 2,
+      "volume": 0,
+      "throttled": 0
+    }
+  ]
+}
